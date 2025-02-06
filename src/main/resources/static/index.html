@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Robot Order</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Smart Delivery Robot - Order</h1>
+
+    <!-- Order Creation Form -->
+    <div id="orderForm">
+        <input type="text" id="locationCode" placeholder="Enter Location Code" required />
+        <button onclick="createOrder()">Create Order</button>
+    </div>
+
+    <!-- Order Info Display -->
+    <div id="orderInfo" style="display: none;">
+        <p>Location Code: <span id="orderLocationCode"></span></p>
+        <p>Pin: <span id="orderPin"></span></p>
+        <button onclick="verifyPin()">Verify Pin and Confirm Delivery</button>
+    </div>
+
+    <!-- Pin Verification Form -->
+    <div id="verifyPinForm" style="display: none;">
+        <input type="text" id="pinInput" placeholder="Enter Pin" required />
+        <button onclick="submitPin()">Verify Pin</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
