@@ -1,7 +1,9 @@
 package com.smartrobot.Smart.Robot.controller;
 
+import com.smartrobot.Smart.Robot.dot.OrderRequest;
 import com.smartrobot.Smart.Robot.model.Order;
 import com.smartrobot.Smart.Robot.service.OrderService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +20,15 @@ public class OrderController {
 
     // order create API
     @PostMapping("/create")
-    public ResponseEntity<Order> createOrder(@RequestParam String locationCode) {
-        Order order = orderService.createOrder(locationCode);
-        return ResponseEntity.ok(order);
+    public ResponseEntity<?> createOrder(@RequestBody OrderRequest request) {
+        try {
+            Order order = orderService.createOrder(request.getLocationCode());
+            return ResponseEntity.ok(order);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating order!");
+        }
     }
+
 
     // Location onujaiye order details return API
     @GetMapping("/get/{locationCode}")
